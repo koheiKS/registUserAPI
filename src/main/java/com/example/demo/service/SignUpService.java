@@ -5,15 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
+import com.example.demo.entity.UserEntity;
 import com.example.demo.form.CheckResultForm;
 import com.example.demo.form.SignUpForm;
+import com.example.demo.repository.UserRepository;
 
 @Service
 public class SignUpService {
+
+	@Autowired
+	UserRepository userRepository;
 
 	public CheckResultForm checkSignUpForm(BindingResult result) {
 		CheckResultForm checkResultForm = new CheckResultForm();
@@ -55,5 +61,15 @@ public class SignUpService {
 	}
 
 	public void saveUserData(SignUpForm signUpForm) {
+		UserEntity user = this.setUserData(signUpForm);
+		userRepository.saveAndFlush(user);
+	}
+
+	private UserEntity setUserData(SignUpForm signUpForm) {
+		UserEntity user = new UserEntity();
+		user.setName(signUpForm.getName());
+		user.setEmail(signUpForm.getEmail());
+		user.setPassword(signUpForm.getPassword());
+		return user;
 	}
 }
