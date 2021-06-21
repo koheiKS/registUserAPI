@@ -4,12 +4,14 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.example.demo.config.Confirm;
+import com.example.demo.annotation.Confirm;
+import com.example.demo.annotation.Unique;
 
 import lombok.Data;
 
 @Data
 @Confirm(field="password")
+@Unique(field="email", repositoryName="UserRepository")
 public class SignUpForm {
 
 	@NotEmpty

@@ -8,7 +8,7 @@ import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import com.example.demo.config.Confirm;
+import com.example.demo.annotation.Confirm;
 
 // confirmとの一致を確認するバリデーター
 public class ConfirmValidator implements ConstraintValidator<Confirm, Object> {
