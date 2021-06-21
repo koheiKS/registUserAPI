@@ -19,5 +19,4 @@ public class SignUpForm {
 		this.password = "";
 		this.confirmPassword = "";
 	}
-
 }
