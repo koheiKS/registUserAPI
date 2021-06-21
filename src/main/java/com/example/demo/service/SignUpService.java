@@ -21,6 +21,9 @@ public class SignUpService {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	EncryptionService encryptionService;
+
 	public CheckResultForm checkSignUpForm(BindingResult result) {
 		CheckResultForm checkResultForm = new CheckResultForm();
 		checkResultForm.setErrorMessages(this.getErrorMessages(result));
@@ -69,7 +72,8 @@ public class SignUpService {
 		UserEntity user = new UserEntity();
 		user.setName(signUpForm.getName());
 		user.setEmail(signUpForm.getEmail());
-		user.setPassword(signUpForm.getPassword());
+		String encryptedPassword = encryptionService.encrypt(signUpForm.getPassword());
+		user.setPassword(encryptedPassword);
 		return user;
 	}
 }
