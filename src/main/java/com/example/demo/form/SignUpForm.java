@@ -4,9 +4,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.example.demo.config.Confirm;
+
 import lombok.Data;
 
 @Data
+@Confirm(field="password")
 public class SignUpForm {
 
 	@NotEmpty
